@@ -39,13 +39,13 @@ const category_delete = async (req, res) => {
   if (!categoryId)
     return res.status(400).json({ message: "Please Enter a Name" });
   try {
-    await prisma.transactionCategory.deleteMany({
+    await prisma.transactionCategory.delete({
       where: {
         id: categoryId,
         userId: req.session.userId,
       },
     });
-    res.status(200).json({ Message: `Deleted Category wit id` });
+    res.status(200).json({ Message: `Deleted Category with id ${categoryId}` });
   } catch (e) {
     console.log(e);
     res.status(400).json({ message: "Something Went Wrong" });
